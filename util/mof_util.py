@@ -24,12 +24,12 @@ def test_regressor(model, data_x, bulk_y, shear_y, testsize=0.2, verbose=1):
         
         x_train1, x_test1, y_train1, y_test1 = train_test_split(data_x, bulk_y, test_size=testsize, random_state=0)
         reg1 = model.fit(x_train1, y_train1)
+        bulk_train.append((round(reg1.score(x_train1, y_train1)*100, 2), test))
+        bulk_test.append((round(reg1.score(x_test1, y_test1)*100, 2), test))
         
         x_train2, x_test2, y_train2, y_test2 = train_test_split(data_x, shear_y, test_size=testsize, random_state=0)
         reg2 = model.fit(x_train2, y_train2)
 
-        bulk_train.append((round(reg1.score(x_train1, y_train1)*100, 2), test))
-        bulk_test.append((round(reg1.score(x_test1, y_test1)*100, 2), test))
         shear_train.append((round(reg2.score(x_train2, y_train2)*100, 2), test))
         shear_test.append((round(reg2.score(x_test2, y_test2)*100, 2), test))
 
@@ -92,7 +92,7 @@ def tune_parameter(model, data_x, bulk_y, shear_y, testsize=0.2):
     x_train1, x_test1, y_train1, y_test1 = train_test_split(data_x, bulk_y, test_size=testsize, random_state=0)
     x_train2, x_test2, y_train2, y_test2 = train_test_split(data_x, shear_y, test_size=testsize, random_state=0)
 
-    grid_search.fit(x_train1, y_train2)
+    grid_search.fit(x_train1, y_train1)
     best1 = grid_search.best_params_
 
     grid_search.fit(x_train2, y_train2)
@@ -121,3 +121,4 @@ def tune_regressor(model, data_x, bulk_y, shear_y, verbose=1, testsize=0.2):
     best_bulk, best_shear = best_regressor(model, best1, best2)
     test_regressor(best_bulk, data_x, bulk_y, shear_y, verbose=verbose, testsize=testsize)
     test_regressor(best_shear, data_x, bulk_y, shear_y, verbose=verbose, testsize=testsize)
+    return best_bulk, best_shear
