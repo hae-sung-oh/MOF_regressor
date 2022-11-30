@@ -4,18 +4,32 @@ This project is about a regression model that predicts the properties of metal-o
 
 The model uses geometric features of MOFs to predict the bulk and shear properties.
 
+You can automatically tune the hyperparameters to get a better regression model by running the codes.
+
 <br/>
 
 
 ## Dataset
-The datasets are in the `/data/` folder with form of `csv` file. The figure below is an example of one MOF data.
+The datasets are in the `/data/` folder with form of `csv` file. The figure below is examples of 5 MOF datas.
+![img](/images/data.png)
 
 <br/>
 
 
+## [LazyPredict](https://github.com/shankarpandala/lazypredict/tree/master)
+By running `ipynb_files/MOF_lazy.ipynb` with [LazyPredict](https://github.com/shankarpandala/lazypredict/tree/master), you can determine the best regression model for the datasets. The figures below is top 3 models of the result for each of bulk and shear data.
+* Best models for bulk data
+    ![img](/images/lazy1.png)
+* Best models for shear data
+    ![img](/images/lazy2.png)
 
 ## Functions
 There are some useful functions in `/util/` folder.
+
+All of the examples can be found in `/ipynb_files/MOF_regressor.ipynb` file.
+
+<br/>
+
 
 ### `import_data.py/import_data(`*`filename`*`)` function
 Imports a dataset in the `/data/`*`filename`* route and splits it into geometric features, bulk data, and shear data.
@@ -49,7 +63,7 @@ It iterates with various testsizes. (e.g. `testsize = [0.2, 0.4, 0.6, 0.8]`)
     * ***`verbose`***: 0, 1, or 2. Verbosity mode. 0 = silent, 1 = plot only, 2 = full log for each iterations. (Default = 1)
 
 * **Returns**: 
-    * Prints test $ R^2 $ plot and best result.
+    * Prints test $R^2$ plot and best result.
 
 * **Example**:
 
