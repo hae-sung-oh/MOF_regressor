@@ -81,7 +81,7 @@ kf = KFold(random_state=30,
            shuffle=True,
           )
 
-def tune_parameter(model, data_x, bulk_y, shear_y, testsize=0.2):
+def tune_parameter(model, data_x, bulk_y, shear_y, testsize=0.2, param_grid=param_grid):
     grid_search = GridSearchCV(estimator=model, 
                             param_grid=param_grid, 
                             cv=kf, 
@@ -104,20 +104,14 @@ def tune_parameter(model, data_x, bulk_y, shear_y, testsize=0.2):
     return best1, best2
 
 def best_regressor(model, best1, best2):
-    best_model1 = type(model)(max_depth=best1['max_depth'], 
-                              max_features=best1['max_features'], 
-                              min_samples_split=best1['min_samples_split'], 
-                              n_estimators=best1['n_estimators'])
+    best_model1 = type(model)(**best1)
 
-    best_model2 = type(model)(max_depth=best2['max_depth'], 
-                              max_features=best2['max_features'], 
-                              min_samples_split=best2['min_samples_split'], 
-                              n_estimators=best2['n_estimators'])
+    best_model2 = type(model)(**best2)
 
     return best_model1, best_model2
 
-def tune_regressor(model, data_x, bulk_y, shear_y, verbose=1, testsize=0.2):
-    best1, best2 = tune_parameter(model, data_x, bulk_y, shear_y)
+def tune_regressor(model, data_x, bulk_y, shear_y, verbose=1, testsize=0.2, param_grid=param_grid):
+    best1, best2 = tune_parameter(model, data_x, bulk_y, shear_y, param_grid=param_grid)
     best_bulk, best_shear = best_regressor(model, best1, best2)
     test_regressor(best_bulk, data_x, bulk_y, shear_y, verbose=verbose, testsize=testsize)
     test_regressor(best_shear, data_x, bulk_y, shear_y, verbose=verbose, testsize=testsize)

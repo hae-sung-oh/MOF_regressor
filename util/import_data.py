@@ -1,7 +1,7 @@
 import csv
 import numpy as np
 
-data_dir = './data/'
+data_dir = '../data/'
 geo_data_label = ['Di',	'Df', 'Dif', 'rho',	'VSA',	'GSA',	'VPOV',	'GPOV',	'POAV_vol_frac', 'PONAV_vol_frac',	'GPOAV', 'GPONAV',	
                   'POAV',	'PONAV', 'VF', 'VSA', 'GSA', 'PLD', 'LCD', 'LCD/PLD', 'UCV', 'GPV', 'density']
 
