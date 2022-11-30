@@ -8,7 +8,7 @@ The model uses geometric features of MOFs to predict the bulk and shear properti
 
 
 ## Dataset
-The datasets are in the `/data/` folder. They are in the form of `csv` file. The figure below is an example of one MOF data.
+The datasets are in the `/data/` folder with form of `csv` file. The figure below is an example of one MOF data.
 
 <br/>
 
@@ -114,7 +114,7 @@ Tunes model hyperparameters to get the best regression model by using [GridSearc
     {'max_depth': 18, 'max_features': None, 'min_samples_split': 0.01, 'n_estimators': 100}
     Shear regression best parameters:
     {'max_depth': 18, 'max_features': None, 'min_samples_split': 0.01, 'n_estimators': 300}
-    
+
     ==============================
     ExtraTreesRegressor
     ```
