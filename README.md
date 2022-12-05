@@ -48,7 +48,7 @@ Imports a dataset in the `/data/`*`filename`* route and splits it into geometric
 <br/>
 
 
-### `mof_util.py/test_regressor(`*`model`*`, `*`data_x`*`, `*`bulk_y`*`, `*`shear_y`*`, `*`testsize=0.2`*`, `*`verbose=1`*`)` function
+### `mof_util.py/test_regressor(`*`model, data_x, bulk_y, shear_y, testsize=0.2, verbose=1`*`)` function
 
 Tests a regression model with geometric feature data x and each of bulk/shear property data y.
 
@@ -88,7 +88,7 @@ It iterates with various testsizes. (e.g. `testsize = [0.2, 0.4, 0.6, 0.8]`)
 <br/>
 
 
-### `mof_util.py/tune_regressor(`*`model`*`, `*`data_x`*`, `*`bulk_y`*`, `*`shear_y`*`, `*`testsize=0.2`*`, `*`verbose=1`*`, `*`param_grid`*`=param_grid)` function
+### `mof_util.py/tune_regressor(`*`model, data_x, bulk_y, shear_y, testsize=0.2, verbose=1, param_grid`*`=param_grid)` function
 
 Tunes model hyperparameters to get the best regression model by using [GridSearch](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html).
 
